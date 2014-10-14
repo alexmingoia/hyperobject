@@ -1,0 +1,19 @@
+{
+  "name": "hyperobject",
+  "version": "0.1.0",
+  "description": "A simple object model for working with Linked Data.",
+  "homepage": "https://github.com/alexmingoia/hyperobject",
+  "authors": [
+    "Alex Mingoia <talk@alexmingoia.com>"
+  ],
+  "keywords": ["hyperdata", "linked-data", "ldp", "rdf", "semantic", "json-ld", "jsonld"]
+  "main": "./dist/hyperobject.js",
+  "dependencies": {},
+  "ignore": [
+    "coverage.html",
+    "node_modules",
+    "lib-cov",
+    "test"
+  ],
+  "license": "Open Works License (OWL)"
+}
