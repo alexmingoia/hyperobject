@@ -1,5 +1,10 @@
 language: node_js
 node_js:
-  - 0.10
+- 0.1
 notifications:
-  - email: false
+- email: false
+after_script:
+- "./node_modules/gulp/bin/gulp.js coveralls"
+env:
+  global:
+    secure: cU75Zpu/KihV3bD9TbEcGkDGGHbE/M120u2N1aJdMnAa52+TekyxWwpiTmx5BQ9nySWYP4QPW0NuV15SRypr/QpgADRg29zqGxoYlHbnh85gRR6Q5AKi6GuG6fpYUChekHdCf3+OQ778LlOdHbJUFIEbGnngiAQOn4uAWQQ36rk=

@@ -87,6 +87,41 @@ gulp.task('coverage', ['instrument'], function() {
     .pipe(gulp.dest('./'));
 });
 
+gulp.task('coveralls', ['instrument'], function(done) {
+  if (!process.env.COVERALLS_REPO_TOKEN) {
+    return done(new Error("No COVERALLS_REPO_TOKEN set."));
+  }
+
+  process.env.JSCOV=1;
+
+  var err = '';
+
+  var mocha = spawn('node_modules/gulp-mocha-phantomjs/node_modules/mocha-phantomjs/node_modules/mocha/bin/mocha', [
+    'test', '--reporter', 'mocha-lcov-reporter'
+  ]);
+
+  mocha.stderr.on('data', function(chunk) {
+    err += chunk;
+  });
+
+  mocha.stdout
+    .pipe(source('lcov.json'))
+    .pipe(buffer())
+    .pipe(coveralls());
+
+  mocha.on('close', function(code) {
+    if (code) {
+      if (err) return done(new Error(err));
+
+      return done(new Error(
+        "Failed to send lcov data to coveralls."
+      ));
+    }
+
+    done();
+  });
+});
+
 gulp.task('watch', ['jshint', 'test'], function () {
   gulp.watch(['lib/**/*.js', 'test/**/*.js'], ['jshint', 'test']);
 });
