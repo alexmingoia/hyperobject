@@ -7,6 +7,8 @@
 
 var gulp = require('gulp');
 var Browserify = require('browserify');
+var buffer = require('vinyl-buffer');
+var coveralls = require('gulp-coveralls');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 var instrument = require('gulp-instrument');
 var fs = require('fs');

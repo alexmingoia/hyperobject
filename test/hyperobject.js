@@ -165,8 +165,7 @@ describe('HyperObject#get', function() {
     var author = object.get('author');
     expect(author).to.be.an('object');
     expect(author).to.have.property('name', 'Alex Mingoia');
-    expect(author).to.have.property('avatar');
-    expect(author.avatar).to.have.property('id', 'http://example.org/avatar.png');
+    expect(author.get('avatar.id')).to.equal('http://example.org/avatar.png');
   });
 });
 
